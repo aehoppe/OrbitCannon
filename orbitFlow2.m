@@ -3,8 +3,12 @@ function res = orbitFlow2(t, state);
     y = state(2);
     Vx = state(3);
     Vy = state(4);
-    
-    theta = atan(y/x); %radians
+        %negative tangent cases
+    if (x < 0)
+        theta = atan(y/x) + pi; %radians
+    else
+        theta = atan(y/x); %radians
+    end
     radius = sqrt(x^2 + y^2); % meters
     
     gravity = aGravity(radius); %m/s^2
