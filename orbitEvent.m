@@ -1,4 +1,4 @@
-function [value, isTerminal, direction] = eventFunc(~, S) 
+function [value, isTerminal, direction] = orbitEvent(~, S) 
     X = S(1);
     Y = S(2);
     
