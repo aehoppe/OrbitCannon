@@ -17,7 +17,7 @@ function orbitFirstCut2(angle, velocity)
     initialTime = 0; %seconds
     finalTime = 1000*60; %seconds
 
-    options = odeset('events', @orbitEvent); 
+    options = odeset('events', @orbitEvent2); 
 
     [T, S] = ode45(@orbitFlow2, [initialTime, finalTime], initial, options);
 
