@@ -20,7 +20,7 @@ options = odeset('events', @orbitEvent);
 
 [T, U] = ode45(@orbitFlow, [initialTime finalTime], initial, options); 
 
-%%pLOT TIME!
+%% pLOT TIME!
 
 angle = U(:, 1);
 radius = U(:, 2);
@@ -29,9 +29,10 @@ radius = U(:, 2);
 clf
 % hold on 
 
-theta = linspace(0, 2*pi);
-n = size(theta)
-r = zeros(1: n); 
+theta = 0:.1:(2.1*pi);
+n = length(theta);
+r = zeros(1, n); 
 r = r + radiusEarth;
 polar(theta, r); 
-polar(angle, radius, 'b*'); 
+hold on
+polar(angle, radius, 'b'); 
