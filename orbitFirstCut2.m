@@ -1,3 +1,4 @@
+
 function orbitFirstCut2(angle, velocity)
     radiusEarth = 6371000; % meters
 
@@ -16,7 +17,7 @@ function orbitFirstCut2(angle, velocity)
     initialTime = 0; %seconds
     finalTime = 100000*60; %seconds
 
-    options = odeset('events', @orbitEvent); 
+    options = odeset('events', @orbitEvent2); 
 
     [T, S] = ode45(@orbitFlow2, [initialTime, finalTime], initial, options);
 
@@ -26,7 +27,7 @@ function orbitFirstCut2(angle, velocity)
     th = 0:pi/50:2*pi;
     xunit = radiusEarth * cos(th);
     yunit = radiusEarth * sin(th);
-    plot(xunit, yunit);
+    plot(xunit, yunit, 'g');
 
     
     hold on

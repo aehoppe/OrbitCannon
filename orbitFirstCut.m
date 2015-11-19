@@ -1,9 +1,9 @@
 radiusEarth = 6371000; % meters
 
 initialAngle = 0; %radians
-initialRadius =  radiusEarth; % meters
+initialRadius =  radiusEarth + 1; % meters
 
-initialVelocity = 4000; % m /s  
+initialVelocity = 8000; % m /s  
 launchAngle = 30; % degrees
 launchAngleRad = pi* launchAngle / 180; % radians 
 
@@ -15,17 +15,24 @@ initial = [initialAngle; initialRadius; initialAngularVelocity; initialRadialVel
 initialTime = 0; %seconds
 finalTime = 120* 60; %seconds
 
+options = odeset('events', @orbitEvent);
 
-[T, U] = ode45(@orbitFlow, [initialTime finalTime], initial); 
 
-%%pLOT TIME!
+[T, U] = ode45(@orbitFlow, [initialTime finalTime], initial, options); 
+
+%% pLOT TIME!
 
 angle = U(:, 1);
 radius = U(:, 2);
 
-format long;
-disp(U); 
 
 clf
 % hold on 
-polar(angle, radius, 'b*'); 
+
+theta = 0:.1:(2.1*pi);
+n = length(theta);
+r = zeros(1, n); 
+r = r + radiusEarth;
+polar(theta, r); 
+hold on
+polar(angle, radius, 'b'); 

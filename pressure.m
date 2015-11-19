@@ -1,5 +1,6 @@
+%pressure is a function that requires an input of radius in meters, and
+%returns pressure in pacals
 function res = pressure(radius)
-    % radius needs to be in kilometers
     radiusEarth = 6371000; % meters
     radiusKilometers = (radius - radiusEarth) / 1000; %kilometers
     pressureInitial = 101325; % Pascals 
@@ -9,5 +10,5 @@ function res = pressure(radius)
     gravity = aGravity(radius); 
     R = 8.31432 % J/mol*K (ideal gas constant) 
     
-    p = pressureInitial*(1 - (lapseRate*radiusKilometers)/temperatureInitial)^(gravity*dryAirWeight/R*lapseRate);
+    p = pressureInitial*(1 - (lapseRate*radiusKilometers)/temperatureInitial)^(gravity*dryAirWeight/R*lapseRate); %pascals
 end
