@@ -1,3 +1,4 @@
+
 function orbitFirstCut2(angle, velocity)
     radiusEarth = 6371000; % meters
 
