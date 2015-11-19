@@ -14,7 +14,7 @@ function orbitFirstCut2(angle, velocity)
     initial = [initialX; initialY; initialVx; initialVy]; 
 
     initialTime = 0; %seconds
-    finalTime = 1000*60; %seconds
+    finalTime = 100000*60; %seconds
 
     options = odeset('events', @orbitEvent); 
 
@@ -28,9 +28,11 @@ function orbitFirstCut2(angle, velocity)
     yunit = radiusEarth * sin(th);
     plot(xunit, yunit);
 
+    
     hold on
     axis equal
-    
+
+    pause;
     %% plot output
     comet(X, Y); 
 end
