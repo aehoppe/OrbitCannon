@@ -3,22 +3,20 @@ function res = orbitFlow2(t, state);
     y = state(2);
     Vx = state(3);
     Vy = state(4);
-        %negative tangent cases
-    if (x < 0)
-        theta = atan(y/x) + pi; %radians
-    else
-        theta = atan(y/x); %radians
-    end
+    
+    position = [x; y];
+    velocity = [Vx; Vy];
+
     radius = sqrt(x^2 + y^2); % meters
     
-    gravity = aGravity(radius); %m/s^2
+    gravity = -1*aGravity(radius); %m/s^2
+    positionHat = position / radius; 
+    velocityHat = velocity / norm(velocity); 
     
-    dxdt = Vx; %m/s
-    dydt = Vy; %m/s
+    dsdt = velocity; 
     
-    dVxdt = -gravity * cos(theta); %m/s^2
-    dVydt = -gravity * sin(theta); %m/s^2
+    dvdt = gravity*positionHat; 
     
-    res = [dxdt; dydt; dVxdt; dVydt];
+    res = [dsdt; dvdt];
     
 end
