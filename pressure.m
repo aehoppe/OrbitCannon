@@ -7,8 +7,19 @@ function res = pressure(radius)
     dryAirWeight = 28.9644; % gm / mol
     temperatureInitial = 288.15; % degrees Kelvin
     lapseRate = 6.5; % temperature lapse rate in K/km
-    gravity = aGravity(radius); 
+    gravity = 9.8; 
     R = 8.31432; % J/mol*K (ideal gas constant) 
+    if radiusKilometers <= 44
+        x = radiusKilometers; 
+        res = 101325*(1 - (x.*6.5)./288.15).^((9.8*28.964)/(8.314*6.5)); %pascals
+    else
+        res = 0;
+    end 
+
+    try
+        assert(isreal(res));
+    catch
+        whos
+    end
     
-    res = pressureInitial*(1 - (lapseRate*radiusKilometers)/temperatureInitial)^(gravity*dryAirWeight/R*lapseRate); %pascals
 end

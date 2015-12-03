@@ -1,7 +1,10 @@
 
-function res = orbitFirstCut2(angle, velocity)
+function orbitFirstCut2(angle, velocity)
     radiusEarth = 6371000; % meters
-   
+    
+    for angle = 1:10
+        angle = angle + 
+
     initialVelocity = velocity; % m /s  
     launchAngle = angle; % degrees
     launchAngleRad = pi* launchAngle / 180; % radians  
@@ -21,15 +24,19 @@ function res = orbitFirstCut2(angle, velocity)
 
     [T, S] = ode45(@orbitFlow2, [initialTime, finalTime], initial, options);
 
+    X = S(:, 1); 
+    Y = S(:, 2); 
     
+    clf
     
-%     th = 0:pi/50:2*pi;
-%     xunit = radiusEarth * cos(th);
-%     yunit = radiusEarth * sin(th);
-%     plot(xunit, yunit, 'g');
+    th = 0:pi/50:2*pi;
+    xunit = radiusEarth * cos(th);
+    yunit = radiusEarth * sin(th);
+    plot(xunit, yunit, 'g');
 
-    xEnd = S(length(T),1);
-    yEnd = S(length(T), 2);
-    
-    res = [xEnd, yEnd];
+    %disp(S); 
+    hold on
+    axis equal
+  
+
 end
