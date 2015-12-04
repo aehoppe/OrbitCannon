@@ -22,6 +22,12 @@ function res = orbitFlow2(t, state);
     dvdt = drag + (gravity*positionHat); 
     
     
-    res = [dsdt; dvdt];
+    if and(radius > 6415000, normVelocity > 11144)
+        escape = 1; 
+    else
+        escape = 0; 
+    end
+        
+    res = [dsdt; dvdt; escape];
     
 end

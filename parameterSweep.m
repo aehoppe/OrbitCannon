@@ -2,7 +2,7 @@
 clf
 hold on
 angleEnd = 70;
-velocityEnd = 110;
+velocityEnd = 210;
 
 %% Plot Earth
 axis equal;
@@ -19,19 +19,27 @@ for i = 1:angleEnd
     disp(i/(angleEnd)*100);
 
     for j = 1:velocityEnd
-        velocity = j*4000000;
+        velocity = j*2000000;
         
         h = orbitFirstCut2(angle, velocity);
         
         X(i, j) = h(1); 
         Y(i, j) = h(2); 
+        escape(i,j) = h(3); 
         
         hold on;
-        plot(X(i,j), Y(i,j), '*'); 
+        if escape(i,j) == 0  
+            plot(X(i,j), Y(i,j), 'r*'); 
+        else 
+%             plot(X(i,j), Y(i,j), 'b*');
+        end
+        velocitySave(i,j) = velocity;
+        angleSave(i,j) = angle;
+
     end
 end
 
-%% PLOT EARTH AGAAAAAAIN
+%% PLOT EARTH AGAAAAAAIN  
         
 hold on
 radiusEarth = 6371000;
@@ -39,5 +47,6 @@ th = 0:pi/50:2*pi;
 xunit = radiusEarth * cos(th);
 yunit = radiusEarth * sin(th);
 plot(xunit, yunit, 'g');
-axis([-8e+6 8e+6 -8e+6 8e+6])
-        
+axis([-8e+6 8e+6 -8e+6 8e+6]);
+
+
