@@ -7,6 +7,6 @@ function drag = aDrag(v, r)
     else 
         area = 0.001137; %m^2
         mass = 4.4282; % kg
-        drag = (0.2 * density(r) * v^2 * area)/2 * mass;
+        drag = (0.2 * density(r) * v^2 * area)/(2 * mass);
     end
 end
