@@ -1,4 +1,11 @@
-    th = 0:pi/50:2*pi;
-    xunit = radiusEarth * cos(th);
-    yunit = radiusEarth * sin(th);
-    plot(xunit, yunit);
+radiusEarth = 6371000;
+th = 0:pi/50:2*pi;
+linewidth = 2;
+xunit = radiusEarth * cos(th);
+yunit = radiusEarth * sin(th);
+plot(xunit, yunit, 'g', 'Linewidth', linewidth);
+xL = xlim;
+yL = ylim;
+line([0 0], yL,  'Linewidth', linewidth);
+line(xL, [0 0], 'Linewidth', linewidth);
+ axis([(-8e+6) - 10, (8e+6) + 10, (-8e+6) - 10, (8e+6) + 10]);
