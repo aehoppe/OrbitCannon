@@ -31,10 +31,7 @@ function res = orbitFirstCut2(angle, velocity)
 
     X = S(:, 1);
     Y = S(:, 2);
-       xlabel('Meters');
-       ylabel('Meters');
-   plot(X, Y,'k', 'LineWidth', linewidth);
-   axis([-1, 50, (radiusEarth -3), (radiusEarth + 20)]); 
+
 
 
     xEnd = S(length(T),1);
