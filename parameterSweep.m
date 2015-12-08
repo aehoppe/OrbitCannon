@@ -1,11 +1,9 @@
-%% Set some shit up 
-clf
-hold on
+%% Set up sweep params
 angleEnd = 90;
-velocityEnd = 18;
+velocityEnd = 180;
 
-results = [-1, -1, -1, 0, 0];
-
+%set up output
+results = [-1, -1, -1];
 X = zeros(angleEnd, velocityEnd);
 Y = zeros(angleEnd, velocityEnd);
 escape = zeros(angleEnd, velocityEnd);
@@ -20,34 +18,39 @@ escape = zeros(angleEnd, velocityEnd);
 % plot(xunit, yunit, 'g');
 
 %% Parameter Sweep
-for i = 1:angleEnd
+parfor i = 1:angleEnd
     angle = i;
     disp(i/(angleEnd)*100);
 
-    parfor j = 1:velocityEnd
-        velocity = j*10000 ;
-         
+    for j = 1:velocityEnd
+        velocity = j*1000  ;
+        %simulate
         h = orbitFirstCut2(angle, velocity);
         
+        %unpack values
         x = h(1);
         y = h(2);
         
+        %store values
         X(i, j) = x; 
         Y(i, j) = y; 
         escape(i,j) = h(3); 
         
-        hold on;
+        %package relevant results into results[]
         if (escape(i,j) == 0)  
-            if(x < 0)
-                theta = atand(y/x);
+            
+            if(x >= 0)
+                impactLat = atand(y/x);
             else
-                theta = atand(y/(-x));
+                impactLat = atand(y/(-x));
+                angle = 180 - angle;
             end
-            results = [results; [angle, velocity, theta, x, y]];
+            results = [results; [angle, velocity, impactLat]];
         end
     end
 end
 
+disp('parameter sweep complete'); 
 %% PLOT EARTH AGAAAAAAIN  
 %         
 % hold on

@@ -1,20 +1,20 @@
-function res = targeting(latitude, results)
+function res = targeting(targetLatitude, results)
 
-thetas = results(:,3);
-bestValue = 0;
+% set up variables for linear search
+impactLats = results(:,3);
+bestValue = -inf;
 bestIndex = 0;
 
 
-%currentTheta init
-currentTheta = -900000;
-
-for i = 1:length(thetas)
-    if(abs(thetas(i) - latitude) < abs(thetas(i) - bestValue))
-        bestValue = thetas(i);
+% linear search for best launch params
+for i = 1:length(impactLats)
+    if(abs(impactLats(i) - targetLatitude) < abs(impactLats(i) - bestValue))
+        bestValue = impactLats(i);
         bestIndex = i;
     end
 end
 
+%package output
 angle = results(bestIndex, 1);
 velocity = results(bestIndex, 2);
 res = [angle, velocity];
