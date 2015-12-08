@@ -32,7 +32,7 @@ function res = orbitFirstCut2(angle, velocity)
 
     X = S(:, 1);
     Y = S(:, 2);
-    
+
     xlabel('Meters');
     ylabel('Meters');
 
