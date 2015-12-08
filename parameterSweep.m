@@ -2,7 +2,7 @@
 clf
 hold on
 angleEnd = 90;
-velocityEnd = 180;
+velocityEnd = 18;
 
 results = [-1, -1, -1, 0, 0];
 
@@ -25,7 +25,7 @@ for i = 1:angleEnd
     disp(i/(angleEnd)*100);
 
     parfor j = 1:velocityEnd
-        velocity = j*1000 ;
+        velocity = j*10000 ;
          
         h = orbitFirstCut2(angle, velocity);
         
@@ -37,11 +37,11 @@ for i = 1:angleEnd
         escape(i,j) = h(3); 
         
         hold on;
-        if escape(i,j) == 0  
+        if (escape(i,j) == 0)  
             if(x < 0)
-                theta = 90 - atand(y/x);
+                theta = atand(y/x);
             else
-                theta = 90 - atand(y/(-x));
+                theta = atand(y/(-x));
             end
             results = [results; [angle, velocity, theta, x, y]];
         end
