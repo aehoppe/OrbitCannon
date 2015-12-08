@@ -1,10 +1,14 @@
-%% Set some shit up
+%% Set some shit up 
 clf
 hold on
 angleEnd = 90;
-velocityEnd =175;
+velocityEnd = 180;
 
-results = [-1, -1, -1];
+results = [-1, -1, -1, 0, 0];
+
+X = zeros(angleEnd, velocityEnd);
+Y = zeros(angleEnd, velocityEnd);
+escape = zeros(angleEnd, velocityEnd);
 
 %% Plot Earth
 % axis equal;
@@ -20,8 +24,8 @@ for i = 1:angleEnd
     angle = i;
     disp(i/(angleEnd)*100);
 
-    for j = 1:velocityEnd
-        velocity = j*1000;
+    parfor j = 1:velocityEnd
+        velocity = j*1000 ;
          
         h = orbitFirstCut2(angle, velocity);
         
@@ -34,12 +38,12 @@ for i = 1:angleEnd
         
         hold on;
         if escape(i,j) == 0  
-            if(x > 0)
-                theta = atand(y/x);
+            if(x < 0)
+                theta = 90 - atand(y/x);
             else
-                theta = 180 - atand(y/x);
+                theta = 90 - atand(y/(-x));
             end
-            results = [results; [angle, velocity, theta]];
+            results = [results; [angle, velocity, theta, x, y]];
         end
     end
 end
