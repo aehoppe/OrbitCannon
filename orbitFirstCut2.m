@@ -15,23 +15,27 @@ function res = orbitFirstCut2(angle, velocity)
     initial = [initialX; initialY; initialVx; initialVy; 0]; 
 
     initialTime = 0; %seconds
-    finalTime = 1000000*60; %seconds
+    finalTime = 100000*60; %seconds
 
     options = odeset('events', @orbitEvent2); 
 
     [T, S] = ode45(@orbitFlow2, [initialTime, finalTime], initial, options);
     
-%     clf
-%     hold on
-%     th = 0:pi/50:2*pi;
-%     xunit = radiusEarth * cos(th);
-%     yunit = radiusEarth * sin(th);
-%     plot(xunit, yunit, 'g');
-% 
-%     X = S(:, 1);
-%     Y = S(:, 2);
-%     pause; 
-%     comet(X, Y);
+
+    hold on
+    th = 0:pi/50:2*pi;
+    xunit = radiusEarth * cos(th);
+    yunit = radiusEarth * sin(th);
+    linewidth = 2;
+    plot(xunit, yunit, 'g', 'LineWidth', linewidth);
+
+    X = S(:, 1);
+    Y = S(:, 2);
+       xlabel('Meters');
+       ylabel('Meters');
+   plot(X, Y,'k', 'LineWidth', linewidth);
+   axis([-1, 50, (radiusEarth -3), (radiusEarth + 20)]); 
+
 
     xEnd = S(length(T),1);
     yEnd = S(length(T), 2);
