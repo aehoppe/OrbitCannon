@@ -21,8 +21,9 @@ function res = orbitFirstCut2(angle, velocity)
 
     [T, S] = ode45(@orbitFlow2, [initialTime, finalTime], initial, options);
     
-
+    %% plot section
     hold on
+    axis equal
     th = 0:pi/50:2*pi;
     xunit = radiusEarth * cos(th);
     yunit = radiusEarth * sin(th);
@@ -31,11 +32,14 @@ function res = orbitFirstCut2(angle, velocity)
 
     X = S(:, 1);
     Y = S(:, 2);
-       xlabel('Meters');
-       ylabel('Meters');
-   plot(X, Y,'k', 'LineWidth', linewidth);
-   axis([-1, 50, (radiusEarth -3), (radiusEarth + 20)]); 
+    
+    xlabel('Meters');
+    ylabel('Meters');
 
+   comet(X, Y);
+    
+%     plot(X, Y,'k', 'LineWidth', linewidth);
+%     axis([-1, 50, (radiusEarth -3), (radiusEarth + 20)]); 
 
     xEnd = S(length(T),1);
     yEnd = S(length(T), 2);
