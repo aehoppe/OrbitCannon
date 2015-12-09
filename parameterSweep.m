@@ -37,7 +37,7 @@ parfor i = 1:angleEnd
         escape(i,j) = h(3); 
         
         %package relevant results into results[]
-        if (escape(i,j) == 0)  
+        if (escape(i,j) == 0)   
             
             if(x >= 0)
                 impactLat = atand(y/x);
