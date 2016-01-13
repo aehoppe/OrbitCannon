@@ -35,8 +35,9 @@ function res = orbitFirstCut2Plot(angle, velocity)
 
     xlabel('Meters');
     ylabel('Meters');
-
-   comet(X, Y);
+    
+    pause;
+    comet(X, Y);
 %     
 %     plot(X, Y,'k', 'LineWidth', linewidth);
 %     axis([-1, 50, (radiusEarth -3), (radiusEarth + 20)]); 
